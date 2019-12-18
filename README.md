@@ -1,21 +1,33 @@
-# TreeMagic
+# TreeMagic Elixir
 
-**TODO: Add description**
+Elixir binding to [tree_magic](https://github.com/aahancoc/tree_magic) for fetching 
+MIME information from files and binary data.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `tree_magic` to your list of dependencies in `mix.exs`:
+This package is not available on hex.pm yet, use git instead:
 
 ```elixir
-def deps do
+# mix.exs
+
+defp dependencies() do
   [
-    {:tree_magic, "~> 0.1.0"}
+    {:tree_magic, git: "https://github.com/antoniskalou/tree_magic.ex"}
   ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/tree_magic](https://hexdocs.pm/tree_magic).
+## Quickstart
 
+See documentation for more information.
+
+```elixir
+iex> TreeMagic.from_filepath("image.png")
+"image/png"
+iex> TreeMagic.from_u8(binary)
+"image/png"
+```
+
+## License
+
+MIT License, see [LICENSE](LICENSE).
