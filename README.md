@@ -1,5 +1,7 @@
 # TreeMagic Elixir
 
+[![CircleCI](https://circleci.com/gh/antoniskalou/tree_magic.ex.svg?style=svg)](https://circleci.com/gh/antoniskalou/tree_magic.ex)
+
 Elixir binding to [tree_magic](https://github.com/aahancoc/tree_magic) for fetching 
 MIME information from files and binary data.
 

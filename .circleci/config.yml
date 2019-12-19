@@ -1,0 +1,55 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/elixir:1.9
+        environment:
+          MIX_ENV: test
+
+    working_directory: ~/app
+
+    steps:
+      - checkout
+
+      - run: 
+          name: Install rust
+          command: |
+            curl https://static.rust-lang.org/rustup/rustup-init.sh | sh -s -- -y --profile minimal
+            source $HOME/.cargo/env
+            echo 'export PATH="$PATH:$HOME/.cargo/bin"' >> $BASH_ENV
+
+      - run: mix local.hex --force 
+      - run: mix local.rebar --force
+
+      - restore_cache:
+          keys:
+            - v1-build-cache-{{ .Branch }}
+            - v1-build-cache
+      - restore_cache:
+          keys:
+            - v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
+            - v1-mix-cache-{{ .Branch }}
+            - v1-mix-cache
+
+      - run: mix do deps.get, compile
+
+      - save_cache:
+          key: v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
+          paths: "deps"
+      - save_cache:
+          key: v1-mix-cache-{{ .Branch }}
+          paths: "deps"
+      - save_cache:
+          key: v1-mix-cache
+          paths: "deps"
+      - save_cache:
+          key: v1-build-cache-{{ .Branch }}
+          paths: "_build"
+      - save_cache:
+          key: v1-build-cache
+          paths: "_build"
+
+      - run: mix test
+
+      - store_test_results:
+          path: _build/test/lib/tree_magic
