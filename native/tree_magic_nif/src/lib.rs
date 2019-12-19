@@ -23,9 +23,9 @@ rustler::rustler_export_nifs! {
 }
 
 fn from_u8<'a>(env: Env<'a>, args: &[Term<'a>]) -> Result<Term<'a>, Error> {
-    let binary: &str = args[0].decode()?;
+    let bytes: Vec<u8> = args[0].decode()?;
 
-    Ok(tree_magic::from_u8(binary.as_bytes()).encode(env))
+    Ok(tree_magic::from_u8(&bytes).encode(env))
 }
 
 fn from_filepath<'a>(env: Env<'a>, args: &[Term<'a>]) -> Result<Term<'a>, Error> {
@@ -56,9 +56,9 @@ fn is_alias<'a>(env: Env<'a>, args: &[Term<'a>]) -> Result<Term<'a>, Error> {
 
 fn match_u8<'a>(env: Env<'a>, args: &[Term<'a>]) -> Result<Term<'a>, Error> {
     let mimetype: &str = args[0].decode()?;
-    let binary: &str = args[1].decode()?;
+    let bytes: Vec<u8> = args[1].decode()?;
 
-    Ok(tree_magic::match_u8(mimetype, binary.as_bytes()).encode(env))
+    Ok(tree_magic::match_u8(mimetype, &bytes).encode(env))
 }
 
 fn match_filepath<'a>(env: Env<'a>, args: &[Term<'a>]) -> Result<Term<'a>, Error> {
