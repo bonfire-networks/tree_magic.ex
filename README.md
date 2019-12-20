@@ -26,7 +26,7 @@ See documentation for more information.
 ```elixir
 iex> TreeMagic.from_filepath("image.png")
 "image/png"
-iex> TreeMagic.from_u8(binary)
+iex> TreeMagic.from_u8(charlist)
 "image/png"
 ```
 
