@@ -32,4 +32,4 @@ iex> TreeMagic.from_u8(charlist)
 
 ## License
 
-MIT License, see [LICENSE](LICENSE).
+LGPLv3 License, see [LICENSE](LICENSE).
