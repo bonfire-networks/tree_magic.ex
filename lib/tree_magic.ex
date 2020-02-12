@@ -11,10 +11,10 @@ defmodule TreeMagic do
   @doc """
   Get the MIME type of a string.
 
-  iex> {:ok, bytes} = File.open("test/fixtures/150.png", [:read, :charlist], &IO.read(&1, 2048))
+  iex> bytes = File.read!("test/fixtures/150.png")
   iex> TreeMagic.from_u8(bytes)
   "image/png"
-  iex> {:ok, bytes} = File.open("test/fixtures/VeryImportant.odt", [:read, :charlist], &IO.read(&1, 2048))
+  iex> bytes = File.read!("test/fixtures/VeryImportant.odt")
   iex> TreeMagic.from_u8(bytes)
   "application/vnd.oasis.opendocument.text"
   """
@@ -55,7 +55,7 @@ defmodule TreeMagic do
   the function will always return false. If mimetype is an alias of a known
   MIME, the file will be checked agains that MIME.
 
-  iex> {:ok, bytes} = File.open("test/fixtures/150.png", [:read, :charlist], &IO.read(&1, 2048))
+  iex> bytes = File.read!("test/fixtures/150.png")
   iex> TreeMagic.match_u8("image/png", bytes)
   true
   iex> TreeMagic.match_u8("application/zip", bytes)

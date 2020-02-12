@@ -1,5 +1,5 @@
 use std::path::Path;
-use rustler::{Encoder, Env, Error, Term};
+use rustler::{Binary, Encoder, Env, Error, Term};
 use petgraph::Incoming;
 
 mod atoms {
@@ -23,9 +23,9 @@ rustler::rustler_export_nifs! {
 }
 
 fn from_u8<'a>(env: Env<'a>, args: &[Term<'a>]) -> Result<Term<'a>, Error> {
-    let bytes: Vec<u8> = args[0].decode()?;
+    let bytes: Binary = args[0].decode()?;
 
-    Ok(tree_magic::from_u8(&bytes).encode(env))
+    Ok(tree_magic::from_u8(bytes.as_slice()).encode(env))
 }
 
 fn from_filepath<'a>(env: Env<'a>, args: &[Term<'a>]) -> Result<Term<'a>, Error> {
@@ -56,9 +56,9 @@ fn is_alias<'a>(env: Env<'a>, args: &[Term<'a>]) -> Result<Term<'a>, Error> {
 
 fn match_u8<'a>(env: Env<'a>, args: &[Term<'a>]) -> Result<Term<'a>, Error> {
     let mimetype: &str = args[0].decode()?;
-    let bytes: Vec<u8> = args[1].decode()?;
+    let bytes: Binary = args[1].decode()?;
 
-    Ok(tree_magic::match_u8(mimetype, &bytes).encode(env))
+    Ok(tree_magic::match_u8(mimetype, bytes.as_slice()).encode(env))
 }
 
 fn match_filepath<'a>(env: Env<'a>, args: &[Term<'a>]) -> Result<Term<'a>, Error> {
