@@ -14,7 +14,7 @@ This package is not available on hex.pm yet, use git instead:
 
 defp dependencies() do
   [
-    {:tree_magic, git: "https://github.com/antoniskalou/tree_magic.ex"}
+    {:tree_magic, git: "https://github.com/commonspub/tree_magic.ex"}
   ]
 end
 ```
