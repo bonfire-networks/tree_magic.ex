@@ -40,7 +40,7 @@ defmodule TreeMagic.MixProject do
   defp package do
     [
       name: "tree_magic",
-      description: "Elixir library for extracting metadata from files",
+      description: "Binding to tree_magic, providing MIME information for files.",
       licenses: ["LGPL-3.0-only"],
       homepage_url: "https://github.com/commonspub/twinkle_star",
       links: %{
