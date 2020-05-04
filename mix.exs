@@ -42,9 +42,9 @@ defmodule TreeMagic.MixProject do
       name: "tree_magic",
       description: "Binding to tree_magic, providing MIME information for files.",
       licenses: ["LGPL-3.0-only"],
-      homepage_url: "https://github.com/commonspub/twinkle_star",
+      homepage_url: "https://github.com/commonspub/tree_magic.ex",
       links: %{
-        "GitHub" => "https://github.com/commonspub/twinkle_star",
+        "GitHub" => "https://github.com/commonspub/tree_magic.ex",
         "CommonsPub" => "https://github.com/commonspub",
       }
     ]
