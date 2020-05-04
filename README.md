@@ -7,7 +7,19 @@ MIME information from files and binary data.
 
 ## Installation
 
-This package is not available on hex.pm yet, use git instead:
+Recommended installation is through Hex:
+
+```elixir
+# mix.exs
+
+defp dependencies() do
+  [
+    {:tree_magic, "~> 0.1.0"}
+  ]
+end
+```
+
+To use the latest development version:
 
 ```elixir
 # mix.exs
