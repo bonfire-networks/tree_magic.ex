@@ -7,10 +7,8 @@ defmodule TreeMagic.MixProject do
       version: "0.1.1",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
-      compilers: [:rustler] ++ Mix.compilers(),
       deps: deps(),
       package: package(),
-      rustler_crates: rustler_crates()
     ]
   end
 
@@ -26,14 +24,6 @@ defmodule TreeMagic.MixProject do
     [
       {:rustler, "~> 0.22.0"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-    ]
-  end
-
-  defp rustler_crates do
-    [
-      tree_magic_nif: [
-        mode: (if Mix.env() == :prod, do: :release, else: :debug)
-      ]
     ]
   end
 
