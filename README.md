@@ -26,7 +26,7 @@ To use the latest development version:
 
 defp dependencies() do
   [
-    {:tree_magic, git: "https://github.com/commonspub/tree_magic.ex"}
+    {:tree_magic, git: "https://github.com/bonfire-networks/tree_magic.ex"}
   ]
 end
 ```
