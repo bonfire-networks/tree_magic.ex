@@ -2,7 +2,7 @@ defmodule TreeMagic do
   use Rustler,
     otp_app: :tree_magic,
     crate: "tree_magic_nif",
-    mode: (if Mix.env() == :prod, do: :release, else: :debug)
+    mode: if(Mix.env() == :prod, do: :release, else: :debug)
 
   @moduledoc """
   Binding to [tree_magic](https://github.com/aahancoc/tree_magic), providing
