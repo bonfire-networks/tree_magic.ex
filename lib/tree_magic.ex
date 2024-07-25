@@ -14,12 +14,12 @@ defmodule TreeMagic do
   @doc """
   Get the MIME type of a string.
 
-  iex> bytes = File.read!("test/fixtures/150.png")
-  iex> TreeMagic.from_u8(bytes)
-  "image/png"
-  iex> bytes = File.read!("test/fixtures/VeryImportant.odt")
-  iex> TreeMagic.from_u8(bytes)
-  "application/vnd.oasis.opendocument.text"
+      iex> bytes = File.read!("test/fixtures/150.png")
+      iex> TreeMagic.from_u8(bytes)
+    "image/png"
+      iex> bytes = File.read!("test/fixtures/VeryImportant.odt")
+      iex> TreeMagic.from_u8(bytes)
+    "application/vnd.oasis.opendocument.text"
   """
   @spec from_u8(binary()) :: mime_type()
   def from_u8(_bytes), do: nif_error()
@@ -29,12 +29,12 @@ defmodule TreeMagic do
 
   Will return an error if the file is missing.
 
-  iex> TreeMagic.from_filepath("test/fixtures/150.png")
-  {:ok, "image/png"}
-  iex> TreeMagic.from_filepath("test/fixtures/VeryImportant.odt")
-  {:ok, "application/vnd.oasis.opendocument.text"}
-  iex> TreeMagic.from_filepath("missing.png")
-  {:error, :enoent}
+      iex> TreeMagic.from_filepath("test/fixtures/150.png")
+    {:ok, "image/png"}
+      iex> TreeMagic.from_filepath("test/fixtures/VeryImportant.odt")
+    {:ok, "application/vnd.oasis.opendocument.text"}
+      iex> TreeMagic.from_filepath("missing.png")
+    {:error, :enoent}
   """
   @spec from_filepath(Path.t()) :: {:ok, mime_type()} | {:error, term}
   def from_filepath(_path), do: nif_error()
@@ -45,8 +45,8 @@ defmodule TreeMagic do
   If this returns true, that means the two MIME types are equivalent. If this
   returns false, either one of the MIME types are missing, or they are different.
 
-  iex> TreeMagic.is_alias("application/zip", "application/x-zip-compressed")
-  true
+      iex> TreeMagic.is_alias("application/zip", "application/x-zip-compressed")
+    true
   """
   @spec is_alias(mime_type(), mime_type()) :: boolean
   def is_alias(_mime1, _mime2), do: nif_error()
@@ -58,11 +58,11 @@ defmodule TreeMagic do
   the function will always return false. If mimetype is an alias of a known
   MIME, the file will be checked agains that MIME.
 
-  iex> bytes = File.read!("test/fixtures/150.png")
-  iex> TreeMagic.match_u8("image/png", bytes)
-  true
-  iex> TreeMagic.match_u8("application/zip", bytes)
-  false
+      iex> bytes = File.read!("test/fixtures/150.png")
+      iex> TreeMagic.match_u8("image/png", bytes)
+    true
+      iex> TreeMagic.match_u8("application/zip", bytes)
+    false
   """
   @spec match_u8(mime_type(), binary()) :: boolean
   def match_u8(_mimetype, _bytes), do: nif_error()
@@ -73,12 +73,12 @@ defmodule TreeMagic do
   If the given MIME type is not known or if the file could not be read, false
   will be returned.
 
-  iex> TreeMagic.match_filepath("image/png", "test/fixtures/150.png")
-  true
-  iex> TreeMagic.match_filepath("application/zip", "test/fixtures/150.png")
-  false
-  iex> TreeMagic.match_filepath("image/png", "missing.png")
-  false
+      iex> TreeMagic.match_filepath("image/png", "test/fixtures/150.png")
+    true
+      iex> TreeMagic.match_filepath("application/zip", "test/fixtures/150.png")
+    false
+      iex> TreeMagic.match_filepath("image/png", "missing.png")
+    false
   """
   @spec match_filepath(mime_type(), Path.t()) :: boolean
   def match_filepath(_mimetype, _path), do: nif_error()
